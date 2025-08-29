@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shard Fragment Merger</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 500px; margin: 2rem auto; }
+  label { display: block; margin-top: 1rem; font-weight: bold; }
+  input { width: 100%; padding: 0.5rem; font-size: 1rem; margin-top: 0.25rem; }
+  button { margin-top: 1.5rem; padding: 0.75rem 1.5rem; font-size: 1.1rem; cursor: pointer; }
+  #result { margin-top: 2rem; font-size: 1.3rem; font-weight: bold; }
+  .error { color: red; }
+  .success { color: green; }
+</style>
+</head>
+<body>
+
+<h1>Shard Fragment Merger</h1>
+
+<label for="fragment1">Shard Fragment 1:</label>
+<input id="fragment1" type="text" placeholder="Enter first shard fragment" />
+
+<label for="fragment2">Shard Fragment 2:</label>
+<input id="fragment2" type="text" placeholder="Enter second shard fragment" />
+
+<button id="mergeBtn">Merge Shards</button>
+
+<div id="result"></div>
+
+<script>
+// Known 22 shard fragments
+const validShards = [
+  "F00!Lm", "ErR@88", "D0r#56", "V1Z$77", "SuN^11", "TyR@99", "WtT!33", "HgM*64",
+  "Drk$42", "D3A^09", "TwG#80", "Dmn%66", "RpX^07", "HrM#77", "Prg!94", "WhF^22",
+  "MoM@31", "MoO#08", "AbY&01", "ChD#66", "BlX!An", "Ju5*C3"
+];
+
+// Code map for all unordered pairs (key = concat of two shards, any order)
+// For brevity here, only a few samples; full mapping is below.
+const codeMap = {
+  "F00!LmF00!Lm": "1A2B", "F00!LmErR@88": "3C4D", "ErR@88F00!Lm": "3C4D",
+  "ErR@88ErR@88": "5E6F", "D0r#56F00!Lm": "7G8H", "F00!LmD0r#56": "7G8H",
+  //... the full 484 mapping will go here
+};
+
+// For demonstration and testing, I've generated a full map below:
+const fullCodeMap = (function() {
+  const shards = validShards;
+  let map = {};
+  function generateCode(i) {
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const digits = "0123456789";
+    return letters[i % 26] + digits[Math.floor(i / 26) % 10] + letters[(i + 5) % 26] + digits[(Math.floor(i / 26) + 3) % 10];
+  }
+  let counter = 0;
+  for (let i = 0; i < shards.length; i++) {
+    for (let j = i; j < shards.length; j++) {
+      let k1 = shards[i] + shards[j];
+      let k2 = shards[j] + shards[i];
+      let code = generateCode(counter++);
+      map[k1] = code;
+      map[k2] = code;
+    }
+  }
+  return map;
+})();
+
+// Helper to normalize input (trim, exact match required)
+function normalizeInput(str) {
+  return str.trim();
+}
+
+// Check if input is valid shard fragment
+function isValidShard(str) {
+  return validShards.includes(str);
+}
+
+document.getElementById("mergeBtn").addEventListener("click", () => {
+  const frag1 = normalizeInput(document.getElementById("fragment1").value);
+  const frag2 = normalizeInput(document.getElementById("fragment2").value);
+  const resultDiv = document.getElementById("result");
+
+  if (!isValidShard(frag1)) {
+    resultDiv.innerHTML = `<span class="error">Error: Shard Fragment 1 "${frag1}" is invalid.</span>`;
+    return;
+  }
+  if (!isValidShard(frag2)) {
+    resultDiv.innerHTML = `<span class="error">Error: Shard Fragment 2 "${frag2}" is invalid.</span>`;
+    return;
+  }
+
+  // Order agnostic lookup
+  let key = frag1 + frag2;
+  if (!(key in fullCodeMap)) {
+    key = frag2 + frag1;
+  }
+
+  if (key in fullCodeMap) {
+    resultDiv.innerHTML = `<span class="success">Merged Key: ${fullCodeMap[key]}</span>`;
+  } else {
+    resultDiv.innerHTML = `<span class="error">Error: No key found for this combination.</span>`;
+  }
+});
+</script>
+
+</body>
+</html>
