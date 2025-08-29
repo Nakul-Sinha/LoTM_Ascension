@@ -1,24 +1,33 @@
-body {
-  font-family: Arial, sans-serif;
-  max-width: 500px;
-  margin: 2rem auto;
-  
-  /* Background image settings */
-  background-image: url('https://github.com/Nakul-Sinha/LoTM_Ascension/blob/main/stars-in-sky-galaxy-6960x4645-15601.jpg');
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  background-image: url('https://raw.githubusercontent.com/Nakul-Sinha/LoTM_Ascension/main/stars-in-sky-galaxy-6960x4645-15601.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  
-  /* Optional: fallback text color depending on image brightness */
+  font-family: Arial, sans-serif;
   color: white;
 }
 
-label {
-  display: block;
-  margin-top: 1rem;
+/* Center content in the middle of the screen */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Headings and labels */
+h1, label {
+  color: white;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
   font-weight: bold;
 }
 
+/* Inputs */
 input {
   width: 100%;
   padding: 0.5rem;
@@ -26,23 +35,38 @@ input {
   margin-top: 0.25rem;
 }
 
-button {
-  margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.1rem;
-  cursor: pointer;
+/* Inputs and button effects */
+input, button {
+  background: rgba(255, 255, 255, 0.1); /* translucent white */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px); /* glass effect */
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0,255,255,0.3); /* glowing edge */
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  transition: 0.3s ease;
 }
 
+/* Button hover effect */
+button:hover {
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0,255,255,0.6);
+}
+
+/* Result output */
 #result {
   margin-top: 2rem;
   font-size: 1.3rem;
   font-weight: bold;
 }
 
+/* Success and error colors */
 .error {
   color: red;
 }
 
 .success {
-  color: green;
+  color: limegreen;
 }
