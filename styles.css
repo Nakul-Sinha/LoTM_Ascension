@@ -2,6 +2,15 @@ body {
   font-family: Arial, sans-serif;
   max-width: 500px;
   margin: 2rem auto;
+  
+  /* Background image settings */
+  background-image: url('background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  /* Optional: fallback text color depending on image brightness */
+  color: white;
 }
 
 label {
