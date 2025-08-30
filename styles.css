@@ -103,7 +103,7 @@ h1, label {
   font-weight: bold;
 }
 .shard-container {
-  background: rgba(0, 0, 0, 0.7); /* translucent black */
+  background: rgba(0, 0, 0, 0.5); /* translucent black */
   border-radius: 15px;
   padding: 30px;
   max-width: 450px;
@@ -127,7 +127,7 @@ input, button {
   background: rgba(0, 0, 0, 0.6); /* darker translucent background */
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(6px); /* glass effect */
-  color: black; /* text inside inputs and button is black */
+  color: white; /* text inside inputs and button is black */
   box-shadow: 0 0 10px rgba(0,255,255,0.3); /* glowing edge */
   border-radius: 8px;
   padding: 0.75rem;
