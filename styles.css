@@ -102,6 +102,16 @@ h1, label {
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
   font-weight: bold;
 }
+.shard-container {
+  background: rgba(0, 0, 0, 0.7); /* translucent black */
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 450px;
+  margin: 100px auto; /* centers horizontally with top spacing */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+}
+
 
 /* Inputs */
 input {
