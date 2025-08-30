@@ -3,8 +3,9 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: black;
+  background-image: url('https://raw.githubusercontent.com/Nakul-Sinha/LoTM_Ascension/main/Fragments_of_Life-Me_and_Myself%20(1).jpg');
+
   /*background-image: url('https://raw.githubusercontent.com/Nakul-Sinha/LoTM_Ascension/main/stars-in-sky-galaxy-6960x4645-15601.jpg');*/
-  background-image: url('https://raw.githubusercontent.com/Nakul-Sinha/LoTM_Ascension/main/stars-in-sky-galaxy-6960x4645-15601.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
